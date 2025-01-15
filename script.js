@@ -8,6 +8,8 @@ let headingTwo=document.querySelector(".headingTwo")
 let inputTwo=document.querySelector(".inputTwo")
 let buttonTwo=document.querySelector(".buttonTwo")
 let errorTwo=document.querySelector(".errorTwo")
+let chance=document.querySelector(".chance")
+let count=5
 
 buttonOne.addEventListener("click",function(){
     if(!inputOne.value){
@@ -26,6 +28,7 @@ buttonOne.addEventListener("click",function(){
         inputTwo.style.display="inline-block"
         buttonTwo.style.display="inline-block"
         errorTwo.style.display="block"
+        chance.innerHTML=`Chance : ${count}`
 
         headingOne.style.display="none"
         inputOne.style.display="none"
@@ -43,8 +46,22 @@ buttonTwo.addEventListener("click", function(){
     }else if(!(inputTwo.value<=10 && inputTwo.value>0)){
         errorTwo.innerHTML="Please Enter from 1 to 10"        
     }else {
-        console.log("Game Start");
-        
+        if (count>1){
+            count--
+            chance.innerHTML=`Chance : ${count}`
+            if(inputOne.value==inputTwo.value){
+                headingTwo.innerHTML="Player Two Won"
+                buttonTwo.style.display="none"            
+            }
+        }else{
+            count=0
+            chance.innerHTML=`Chance : ${count}`
+            headingTwo.innerHTML="Player One Won"
+                       
+            buttonTwo.style.display="none"
+            
+        }
+
     }
          
 })
